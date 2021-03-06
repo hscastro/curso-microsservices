@@ -3,6 +3,7 @@ package com.hscastro.hscastro.data.vo;
 import java.io.Serializable;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.hateoas.RepresentationModel;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -22,7 +23,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode 
-public class ProdutoVO  implements Serializable{
+public class ProdutoVO extends RepresentationModel<ProdutoVO> implements Serializable{
 
 	private static final long serialVersionUID = -6694935518529115811L;
 
@@ -41,5 +42,14 @@ public class ProdutoVO  implements Serializable{
 	public static ProdutoVO create(Produto produto) {
 		return new ModelMapper().map(produto, ProdutoVO.class);
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 	
+		
 }
