@@ -16,6 +16,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,6 +44,15 @@ public class ProdutoController {
 		ProdutoVO produtoVO = produtoService.findById(id);
 		produtoVO.add(linkTo(methodOn(ProdutoController.class).findById(id)).withSelfRel());
 		return produtoVO;
+	}
+
+	
+	@PostMapping(produces = {"application/json","application/xml","application/yaml"},
+			     consumes = {"application/json","application/xml","application/yaml"})
+	public ProdutoVO create(@RequestBody ProdutoVO produtoVO) {
+		ProdutoVO proVO = produtoService.create(produtoVO);
+		proVO.add(linkTo(methodOn(ProdutoController.class).findById(produtoVO.getId())).withSelfRel());
+		return proVO;
 	}
 	
 	@GetMapping(produces = {"application/json","application/xml","application/yaml"})
