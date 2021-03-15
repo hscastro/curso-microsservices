@@ -1,13 +1,13 @@
-package com.hscastro.hscastro.data.vo;
+package com.crud.hscastro.data.vo;
 
 import java.io.Serializable;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.hateoas.RepresentationModel;
 
+import com.crud.hscastro.entities.Produto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.hscastro.hscastro.entities.Produto;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

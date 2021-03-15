@@ -1,4 +1,4 @@
-package com.hscastro.hscastro.controllers;
+package com.crud.hscastro.controllers;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -17,13 +17,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hscastro.hscastro.data.vo.ProdutoVO;
-import com.hscastro.hscastro.services.ProdutoService;
+import com.crud.hscastro.data.vo.ProdutoVO;
+import com.crud.hscastro.services.ProdutoService;
+
 
 
 @RestController
@@ -54,6 +56,15 @@ public class ProdutoController {
 		proVO.add(linkTo(methodOn(ProdutoController.class).findById(produtoVO.getId())).withSelfRel());
 		return proVO;
 	}
+	
+
+	@PutMapping(produces = {"application/json","application/xml","application/yaml"},
+		     consumes = {"application/json","application/xml","application/yaml"})
+	public ProdutoVO update(@RequestBody ProdutoVO produtoVO) {
+		ProdutoVO proVO = produtoService.update(produtoVO);
+		proVO.add(linkTo(methodOn(ProdutoController.class).findById(produtoVO.getId())).withSelfRel());
+		return proVO;
+	}	
 	
 	@GetMapping(produces = {"application/json","application/xml","application/yaml"})
 	public ResponseEntity<?> findAll(@RequestParam(value = "page", defaultValue = "0") int page,

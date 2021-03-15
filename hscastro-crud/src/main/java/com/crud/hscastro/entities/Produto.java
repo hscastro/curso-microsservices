@@ -1,4 +1,4 @@
-package com.hscastro.hscastro.entities;
+package com.crud.hscastro.entities;
 
 import java.io.Serializable;
 
@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 import org.modelmapper.ModelMapper;
 
-import com.hscastro.hscastro.data.vo.ProdutoVO;
+import com.crud.hscastro.data.vo.ProdutoVO;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
